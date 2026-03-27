@@ -1,83 +1,594 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sai Tejaswi Bonagani</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            background: #0f172a;
-            color: white;
-        }
-        .container {
-            padding: 40px;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        .section {
-            background: #1e293b;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 800px;
-        }
-        a {
-            color: #38bdf8;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sai Tejaswi Bonagani — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #080c10;
+      --surface:  #0d1117;
+      --border:   rgba(255,255,255,0.07);
+      --accent:   #7ee8fa;
+      --gold:     #e2b96f;
+      --muted:    rgba(255,255,255,0.38);
+      --text:     #eef2f7;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 13.5px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: .6;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      position: fixed;
+      left: 0; top: 0;
+      width: 260px;
+      height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 48px 32px;
+      z-index: 100;
+    }
+
+    .avatar-wrap {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 700;
+      color: #080c10;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: .01em;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+    }
+
+    nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+    nav a {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 11.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: color .2s, background .2s;
+    }
+    nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    nav a .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--border);
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+    nav a:hover .dot { background: var(--accent); }
+
+    .contact-links { margin-top: auto; padding-top: 32px; border-top: 1px solid var(--border); }
+    .contact-links p { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
+    .contact-links a {
+      display: block;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 11.5px;
+      margin-bottom: 6px;
+      transition: opacity .2s;
+    }
+    .contact-links a:hover { opacity: .7; }
+
+    /* ── MAIN ── */
+    main {
+      margin-left: 260px;
+      min-height: 100vh;
+      padding: 80px 72px 120px;
+      max-width: 980px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-bottom: 100px;
+      opacity: 0;
+      animation: fadeUp .9s .1s forwards;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6vw, 80px);
+      font-weight: 300;
+      line-height: .95;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-desc {
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .stats-row {
+      display: flex; gap: 48px;
+      margin-top: 52px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      margin-bottom: 96px;
+      opacity: 0;
+      animation: fadeUp .8s forwards;
+    }
+    section:nth-child(2) { animation-delay: .2s; }
+    section:nth-child(3) { animation-delay: .35s; }
+    section:nth-child(4) { animation-delay: .5s; }
+    section:nth-child(5) { animation-delay: .65s; }
+    section:nth-child(6) { animation-delay: .8s; }
+
+    .sec-label {
+      font-size: 10.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .sec-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: 40px;
+      line-height: 1.1;
+    }
+
+    /* ── EDUCATION TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 140px 1px 1fr;
+      gap: 0 28px;
+      padding-bottom: 40px;
+    }
+    .tl-year {
+      text-align: right;
+      padding-top: 2px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+    .tl-line {
+      position: relative;
+      background: var(--border);
+    }
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: 50%;
+      transform: translateX(-50%);
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+    }
+    .tl-content { padding-top: 0; }
+    .tl-institution {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .tl-degree { color: var(--muted); font-size: 12.5px; }
+    .tl-score {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 10px;
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: .06em;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 20px;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-card:hover { border-color: rgba(126,232,250,.3); transform: translateY(-2px); }
+    .skill-card-title {
+      font-size: 10.5px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 11.5px;
+      padding: 3px 10px;
+      color: var(--muted);
+      transition: color .2s, border-color .2s;
+    }
+    .tag:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .25s, transform .25s;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      opacity: 0;
+      transition: opacity .25s;
+    }
+    .project-card:hover { border-color: rgba(126,232,250,.25); transform: translateY(-3px); }
+    .project-card:hover::before { opacity: 1; }
+    .project-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .project-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .project-desc { color: var(--muted); font-size: 12.5px; line-height: 1.7; }
+    .project-tag {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(226,185,111,.3);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── ACHIEVEMENTS & CERTS ── */
+    .list-items { display: flex; flex-direction: column; gap: 14px; }
+    .list-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+    .list-item:hover { border-color: rgba(126,232,250,.25); }
+    .list-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(126,232,250,.15), rgba(226,185,111,.1));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .list-text { flex: 1; }
+    .list-title { font-size: 13.5px; color: var(--text); margin-bottom: 2px; }
+    .list-sub { font-size: 11.5px; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-left: 260px;
+      padding: 32px 72px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .05em;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      aside { display: none; }
+      main { margin-left: 0; padding: 40px 24px 80px; }
+      footer { margin-left: 0; padding: 24px; flex-direction: column; gap: 8px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 28px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Sai Tejaswi Bonagani</h1>
-    <p style="text-align:center;">Aspiring Software Engineer | AI Enthusiast</p>
+<!-- SIDEBAR -->
+<aside>
+  <div class="avatar-wrap">ST</div>
+  <div class="name">Sai Tejaswi<br/>Bonagani</div>
+  <div class="tagline">Software Engineer</div>
+  <nav>
+    <a href="#about"><span class="dot"></span>About</a>
+    <a href="#education"><span class="dot"></span>Education</a>
+    <a href="#skills"><span class="dot"></span>Skills</a>
+    <a href="#projects"><span class="dot"></span>Projects</a>
+    <a href="#achievements"><span class="dot"></span>Achievements</a>
+    <a href="#certificates"><span class="dot"></span>Certificates</a>
+  </nav>
+  <div class="contact-links">
+    <p>Get in touch</p>
+    <a href="mailto:bonaganisaitejaswi22@gmail.com">bonaganisaitejaswi22<br/>@gmail.com</a>
+    <a href="https://github.com/2303A51184" target="_blank">github.com/2303A51184</a>
+    <a href="https://www.linkedin.com/in/bonagani-sai-tejaswi-770430300" target="_blank">LinkedIn Profile</a>
+  </div>
+</aside>
 
-    <div class="section">
-        <h2>Summary</h2>
-        <p>Computer Science undergraduate with strong interest in AI, LLMs, and intelligent systems. Experienced in building AI-powered applications using APIs and agent-based systems.</p>
-    </div>
+<!-- MAIN CONTENT -->
+<main>
 
-    <div class="section">
-        <h2>Education</h2>
-        <p><b>SR University</b> (2023–2027) – B.Tech CSE (CGPA: 9.4)</p>
-        <p><b>Suvidyaa Junior College</b> – 97.2%</p>
-        <p><b>SPR School of Excellence</b> – GPA: 10</p>
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <div class="hero-eyebrow">Portfolio · 2025</div>
+    <h1>Aspiring<br/><em>Software</em><br/>Engineer</h1>
+    <p class="hero-desc">
+      Computer Science undergraduate passionate about AI, large language models, and intelligent systems. Building AI-powered applications at the intersection of research and engineering.
+    </p>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">9.4</div>
+        <div class="stat-label">CGPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">AI Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">'27</div>
+        <div class="stat-label">Graduating</div>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-        <h2>Skills</h2>
-        <p>Python • Java • SQL • JavaScript</p>
-        <p>AI/ML • NLP • LLM APIs • Prompt Engineering</p>
-        <p>HTML • CSS • MySQL • Git • GitHub</p>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-label">01 — Education</div>
+    <h2 class="sec-title">Academic<br/>Background</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2023 – 2027</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-institution">SR University</div>
+          <div class="tl-degree">B.Tech Computer Science & Engineering</div>
+          <span class="tl-score">CGPA · 9.4</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Intermediate</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-institution">Suvidyaa Junior College</div>
+          <div class="tl-degree">Board of Intermediate Education</div>
+          <span class="tl-score">97.2%</span>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Secondary</div>
+        <div class="tl-line"></div>
+        <div class="tl-content">
+          <div class="tl-institution">SPR School of Excellence</div>
+          <div class="tl-degree">Secondary School Certificate</div>
+          <span class="tl-score">GPA · 10 / 10</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="section">
-        <h2>Projects</h2>
-        <p><b>MIRAI</b> – LLM Agent Benchmark for forecasting events</p>
-        <p><b>EduGPT</b> – AI system for personalized learning</p>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-label">02 — Skills</div>
+    <h2 class="sec-title">Technical<br/>Expertise</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">AI / ML</div>
+        <div class="skill-tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">NLP</span>
+          <span class="tag">LLM APIs</span>
+          <span class="tag">Prompt Eng.</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Web & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="section">
-        <h2>Achievements</h2>
-        <p>IQAC Member (2025–2026)</p>
-        <p>24-hour Hackathon Recognition</p>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-label">03 — Projects</div>
+    <h2 class="sec-title">Selected<br/>Work</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <div class="project-name">MIRAI</div>
+        <div class="project-desc">LLM Agent Benchmark designed for forecasting and predicting real-world events. Evaluates language model reasoning under uncertainty.</div>
+        <span class="project-tag">LLM · Agent · Forecasting</span>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <div class="project-name">EduGPT</div>
+        <div class="project-desc">AI-powered personalized learning system that adapts educational content to individual student needs using large language models.</div>
+        <span class="project-tag">AI · Education · NLP</span>
+      </div>
     </div>
+  </section>
 
-    <div class="section">
-        <h2>Certificates</h2>
-        <p>AWS Cloud Foundations</p>
-        <p>CCNA - Introduction to Networks</p>
-        <p>EduSkills Virtual Internships</p>
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="sec-label">04 — Achievements</div>
+    <h2 class="sec-title">Recognition<br/>& Roles</h2>
+    <div class="list-items">
+      <div class="list-item">
+        <div class="list-icon">🏛️</div>
+        <div class="list-text">
+          <div class="list-title">IQAC Member</div>
+          <div class="list-sub">Internal Quality Assurance Cell · SR University · 2025–2026</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="section">
-        <h2>Contact</h2>
-        <p>Email: bonaganisaitejaswi22@gmail.com</p>
-        <p>GitHub: <a href="https://github.com/2303A51184">github.com/2303A51184</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/bonagani-sai-tejaswi-770430300">View Profile</a></p>
+  <!-- CERTIFICATES -->
+  <section id="certificates">
+    <div class="sec-label">05 — Certificates</div>
+    <h2 class="sec-title">Credentials<br/>& Training</h2>
+    <div class="list-items">
+      <div class="list-item">
+        <div class="list-icon">☁️</div>
+        <div class="list-text">
+          <div class="list-title">AWS Cloud Foundations</div>
+          <div class="list-sub">Amazon Web Services · Cloud Computing Fundamentals</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-icon">🌐</div>
+        <div class="list-text">
+          <div class="list-title">CCNA — Introduction to Networks</div>
+          <div class="list-sub">Cisco Certified Network Associate · Networking Fundamentals</div>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-icon">💼</div>
+        <div class="list-text">
+          <div class="list-title">EduSkills Virtual Internships</div>
+          <div class="list-sub">Industry-aligned virtual training program</div>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Sai Tejaswi Bonagani</span>
+  <span>bonaganisaitejaswi22@gmail.com</span>
+</footer>
 
 </body>
 </html>
