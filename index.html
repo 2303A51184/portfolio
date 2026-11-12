@@ -1,594 +1,988 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sai Tejaswi Bonagani — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg:       #080c10;
-      --surface:  #0d1117;
-      --border:   rgba(255,255,255,0.07);
-      --accent:   #7ee8fa;
-      --gold:     #e2b96f;
-      --muted:    rgba(255,255,255,0.38);
-      --text:     #eef2f7;
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <!-- Primary Meta Tags -->
+  <title>Sai Tejaswi Bonagani — Software Engineer & AI Researcher</title>
+  <meta name="title" content="Sai Tejaswi Bonagani — Software Engineer & AI Researcher" />
+  <meta name="description" content="Portfolio of Sai Tejaswi Bonagani. Computer Science undergraduate at SR University specializing in Artificial Intelligence, Large Language Models, and Full-Stack Engineering." />
+  <meta name="keywords" content="Sai Tejaswi Bonagani, Portfolio, Software Engineer, AI, Machine Learning, LLM, Python, Unity, C#, SR University" />
+  <meta name="author" content="Sai Tejaswi Bonagani" />
+  <meta name="theme-color" content="#07090e" />
 
-    html { scroll-behavior: smooth; }
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://2303a51184.github.io/portfolio/" />
+  <meta property="og:title" content="Sai Tejaswi Bonagani — Software Engineer & AI Researcher" />
+  <meta property="og:description" content="Computer Science undergraduate passionate about AI, Large Language Models, and intelligent systems. View projects, skills, and academic background." />
+  <meta property="og:image" content="assets/avatar.svg" />
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 13.5px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://2303a51184.github.io/portfolio/" />
+  <meta property="twitter:title" content="Sai Tejaswi Bonagani — Software Engineer & AI Researcher" />
+  <meta property="twitter:description" content="Computer Science undergraduate passionate about AI, Large Language Models, and intelligent systems." />
+  <meta property="twitter:image" content="assets/avatar.svg" />
 
-    /* ── NOISE TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 999;
-      opacity: .6;
-    }
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-    /* ── SIDEBAR ── */
-    aside {
-      position: fixed;
-      left: 0; top: 0;
-      width: 260px;
-      height: 100vh;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      padding: 48px 32px;
-      z-index: 100;
-    }
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-    .avatar-wrap {
-      width: 72px; height: 72px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--gold));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 28px; font-weight: 700;
-      color: #080c10;
-      margin-bottom: 20px;
-      flex-shrink: 0;
-    }
-
-    .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 600;
-      line-height: 1.25;
-      letter-spacing: .01em;
-      margin-bottom: 6px;
-    }
-
-    .tagline {
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-    }
-
-    nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-
-    nav a {
-      display: flex; align-items: center; gap: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 11.5px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: color .2s, background .2s;
-    }
-    nav a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
-    nav a .dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--border);
-      flex-shrink: 0;
-      transition: background .2s;
-    }
-    nav a:hover .dot { background: var(--accent); }
-
-    .contact-links { margin-top: auto; padding-top: 32px; border-top: 1px solid var(--border); }
-    .contact-links p { font-size: 11px; color: var(--muted); margin-bottom: 10px; }
-    .contact-links a {
-      display: block;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 11.5px;
-      margin-bottom: 6px;
-      transition: opacity .2s;
-    }
-    .contact-links a:hover { opacity: .7; }
-
-    /* ── MAIN ── */
-    main {
-      margin-left: 260px;
-      min-height: 100vh;
-      padding: 80px 72px 120px;
-      max-width: 980px;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      margin-bottom: 100px;
-      opacity: 0;
-      animation: fadeUp .9s .1s forwards;
-    }
-
-    .hero-eyebrow {
-      font-size: 11px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 6vw, 80px);
-      font-weight: 300;
-      line-height: .95;
-      letter-spacing: -.02em;
-      margin-bottom: 28px;
-    }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-
-    .hero-desc {
-      color: var(--muted);
-      max-width: 540px;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .stats-row {
-      display: flex; gap: 48px;
-      margin-top: 52px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-item {}
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 600;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 10.5px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* ── SECTION SHARED ── */
-    section {
-      margin-bottom: 96px;
-      opacity: 0;
-      animation: fadeUp .8s forwards;
-    }
-    section:nth-child(2) { animation-delay: .2s; }
-    section:nth-child(3) { animation-delay: .35s; }
-    section:nth-child(4) { animation-delay: .5s; }
-    section:nth-child(5) { animation-delay: .65s; }
-    section:nth-child(6) { animation-delay: .8s; }
-
-    .sec-label {
-      font-size: 10.5px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 32px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .sec-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px;
-      font-weight: 300;
-      margin-bottom: 40px;
-      line-height: 1.1;
-    }
-
-    /* ── EDUCATION TIMELINE ── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .tl-item {
-      display: grid;
-      grid-template-columns: 140px 1px 1fr;
-      gap: 0 28px;
-      padding-bottom: 40px;
-    }
-    .tl-year {
-      text-align: right;
-      padding-top: 2px;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: .05em;
-    }
-    .tl-line {
-      position: relative;
-      background: var(--border);
-    }
-    .tl-line::before {
-      content: '';
-      position: absolute;
-      top: 6px; left: 50%;
-      transform: translateX(-50%);
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 12px var(--accent);
-    }
-    .tl-content { padding-top: 0; }
-    .tl-institution {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .tl-degree { color: var(--muted); font-size: 12.5px; }
-    .tl-score {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 3px 10px;
-      border: 1px solid var(--gold);
-      border-radius: 20px;
-      font-size: 11px;
-      color: var(--gold);
-      letter-spacing: .06em;
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 22px 20px;
-      transition: border-color .2s, transform .2s;
-    }
-    .skill-card:hover { border-color: rgba(126,232,250,.3); transform: translateY(-2px); }
-    .skill-card-title {
-      font-size: 10.5px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 11.5px;
-      padding: 3px 10px;
-      color: var(--muted);
-      transition: color .2s, border-color .2s;
-    }
-    .tag:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-
-    /* ── PROJECTS ── */
-    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color .25s, transform .25s;
-    }
-    .project-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
-      opacity: 0;
-      transition: opacity .25s;
-    }
-    .project-card:hover { border-color: rgba(126,232,250,.25); transform: translateY(-3px); }
-    .project-card:hover::before { opacity: 1; }
-    .project-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.04);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .project-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--text);
-    }
-    .project-desc { color: var(--muted); font-size: 12.5px; line-height: 1.7; }
-    .project-tag {
-      display: inline-block;
-      margin-top: 18px;
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid rgba(226,185,111,.3);
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    /* ── ACHIEVEMENTS & CERTS ── */
-    .list-items { display: flex; flex-direction: column; gap: 14px; }
-    .list-item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 18px 22px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: border-color .2s;
-    }
-    .list-item:hover { border-color: rgba(126,232,250,.25); }
-    .list-icon {
-      width: 32px; height: 32px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(126,232,250,.15), rgba(226,185,111,.1));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-    .list-text { flex: 1; }
-    .list-title { font-size: 13.5px; color: var(--text); margin-bottom: 2px; }
-    .list-sub { font-size: 11.5px; color: var(--muted); }
-
-    /* ── FOOTER ── */
-    footer {
-      margin-left: 260px;
-      padding: 32px 72px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: .05em;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      aside { display: none; }
-      main { margin-left: 0; padding: 40px 24px 80px; }
-      footer { margin-left: 0; padding: 24px; flex-direction: column; gap: 8px; }
-      .skills-grid { grid-template-columns: 1fr 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .stats-row { gap: 28px; }
-    }
-  </style>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- SIDEBAR -->
-<aside>
-  <div class="avatar-wrap">ST</div>
-  <div class="name">Sai Tejaswi<br/>Bonagani</div>
-  <div class="tagline">Software Engineer</div>
-  <nav>
-    <a href="#about"><span class="dot"></span>About</a>
-    <a href="#education"><span class="dot"></span>Education</a>
-    <a href="#skills"><span class="dot"></span>Skills</a>
-    <a href="#projects"><span class="dot"></span>Projects</a>
-    <a href="#achievements"><span class="dot"></span>Achievements</a>
-    <a href="#certificates"><span class="dot"></span>Certificates</a>
-  </nav>
-  <div class="contact-links">
-    <p>Get in touch</p>
-    <a href="mailto:bonaganisaitejaswi22@gmail.com">bonaganisaitejaswi22<br/>@gmail.com</a>
-    <a href="https://github.com/2303A51184" target="_blank">github.com/2303A51184</a>
-    <a href="https://www.linkedin.com/in/bonagani-sai-tejaswi-770430300" target="_blank">LinkedIn Profile</a>
-  </div>
-</aside>
-
-<!-- MAIN CONTENT -->
-<main>
-
-  <!-- HERO -->
-  <div class="hero" id="about">
-    <div class="hero-eyebrow">Portfolio · 2025</div>
-    <h1>Aspiring<br/><em>Software</em><br/>Engineer</h1>
-    <p class="hero-desc">
-      Computer Science undergraduate passionate about AI, large language models, and intelligent systems. Building AI-powered applications at the intersection of research and engineering.
-    </p>
-    <div class="stats-row">
-      <div class="stat-item">
-        <div class="stat-num">9.4</div>
-        <div class="stat-label">CGPA</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2+</div>
-        <div class="stat-label">AI Projects</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">3+</div>
-        <div class="stat-label">Certifications</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">'27</div>
-        <div class="stat-label">Graduating</div>
-      </div>
-    </div>
+  <!-- Reading Progress Bar -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
   </div>
 
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="sec-label">01 — Education</div>
-    <h2 class="sec-title">Academic<br/>Background</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-year">2023 – 2027</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-institution">SR University</div>
-          <div class="tl-degree">B.Tech Computer Science & Engineering</div>
-          <span class="tl-score">CGPA · 9.4</span>
+  <!-- Interactive Starfield Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow ambient-glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-3" aria-hidden="true"></div>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header" role="banner">
+    <div class="nav-pill-wrapper">
+      <nav class="nav-pill" role="navigation" aria-label="Main Navigation">
+        <!-- Brand Logo -->
+        <a href="#home" class="brand-logo" aria-label="Sai Tejaswi Bonagani Home">
+          <div class="logo-badge" aria-hidden="true">ST</div>
+          <div class="brand-name">Tejaswi<span>.dev</span></div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <ul class="nav-links" id="nav-links-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#certificates" class="nav-link">Certificates</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Right Header Actions (Theme & Resume) -->
+        <div class="header-actions">
+          <button class="btn-icon" id="theme-toggle-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+            <span id="theme-icon">
+              <!-- Initial Sun icon -->
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+          </button>
+
+          <a href="#resume" class="btn btn-primary btn-sm open-resume-btn">Resume</a>
+
+          <!-- Mobile Hamburger -->
+          <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">Intermediate</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-institution">Suvidyaa Junior College</div>
-          <div class="tl-degree">Board of Intermediate Education</div>
-          <span class="tl-score">97.2%</span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+
+    <!-- ====================================================================
+         HERO SECTION
+         ==================================================================== -->
+    <div class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Text Content -->
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <span class="badge badge-pulse">
+                <span class="pulse-dot"></span>
+                Available for SDE & AI/ML Opportunities
+              </span>
+            </div>
+
+            <h1 class="hero-title">
+              Hi, I'm <span class="gradient-text">Sai Tejaswi</span><br />
+              <span class="typewriter-wrap">
+                <span id="typewriter-text"></span><span class="cursor">|</span>
+              </span>
+            </h1>
+
+            <p class="hero-description">
+              Computer Science undergraduate at <strong>SR University</strong> passionate about Artificial Intelligence, Large Language Models, and scalable software systems. Crafting thoughtful software at the intersection of AI research and engineering.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#projects" class="btn btn-primary">
+                View Projects
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <button class="btn btn-secondary open-resume-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                View Resume
+              </button>
+              <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="hero-socials">
+              <a href="https://github.com/2303A51184" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub Profile" title="GitHub">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/bonagani-sai-tejaswi-770430300" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn Profile" title="LinkedIn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              <a href="mailto:bonaganisaitejaswi22@gmail.com" class="social-link" aria-label="Email Sai Tejaswi" title="Email">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Showcase Card -->
+          <div class="hero-visual-card">
+            <div class="glass-showcase">
+              <div class="floating-tech-badges" aria-hidden="true">
+                <div class="float-badge float-badge-1">⚡ AI & LLMs</div>
+                <div class="float-badge float-badge-2">🎓 SR University '27</div>
+              </div>
+
+              <div class="card-avatar-center">
+                <div class="avatar-halo">
+                  <img src="assets/avatar.svg" alt="Sai Tejaswi Bonagani" class="avatar-img" />
+                </div>
+                <h2 class="showcase-name">Sai Tejaswi Bonagani</h2>
+                <div class="showcase-role">&lt;Software Engineer /&gt;</div>
+              </div>
+
+              <div class="terminal-code-snippet">
+                <span class="code-keyword">const</span> <span class="code-fn">developer</span> = {<br />
+                &nbsp;&nbsp;<span class="code-prop">name</span>: <span class="code-str">'Sai Tejaswi Bonagani'</span>,<br />
+                &nbsp;&nbsp;<span class="code-prop">institution</span>: <span class="code-str">'SR University'</span>,<br />
+                &nbsp;&nbsp;<span class="code-prop">degree</span>: <span class="code-str">'B.Tech Computer Science'</span>,<br />
+                &nbsp;&nbsp;<span class="code-prop">cgpa</span>: <span class="code-keyword">9.4</span>,<br />
+                &nbsp;&nbsp;<span class="code-prop">focus</span>: [<span class="code-str">'AI/ML'</span>, <span class="code-str">'LLM Agents'</span>, <span class="code-str">'Software Eng.'</span>],<br />
+                &nbsp;&nbsp;<span class="code-prop">openForWork</span>: <span class="code-keyword">true</span><br />
+                };
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">Secondary</div>
-        <div class="tl-line"></div>
-        <div class="tl-content">
-          <div class="tl-institution">SPR School of Excellence</div>
-          <div class="tl-degree">Secondary School Certificate</div>
-          <span class="tl-score">GPA · 10 / 10</span>
+
+        <!-- Animated Stats Ribbon -->
+        <div class="stats-ribbon">
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="9.4" data-decimal="true">0.0</span>
+              <span class="stat-suffix">/10</span>
+            </div>
+            <div class="stat-label">Academic CGPA</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="3" data-decimal="false">0</span>
+              <span class="stat-suffix">+</span>
+            </div>
+            <div class="stat-label">Featured Projects</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="3" data-decimal="false">0</span>
+              <span class="stat-suffix"></span>
+            </div>
+            <div class="stat-label">Industry Certifications</div>
+          </div>
+
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="2027" data-decimal="false">0</span>
+            </div>
+            <div class="stat-label">Graduation Class</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="sec-label">02 — Skills</div>
-    <h2 class="sec-title">Technical<br/>Expertise</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-card-title">Languages</div>
-        <div class="skill-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Java</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">SQL</span>
+    <!-- ====================================================================
+         ABOUT SECTION
+         ==================================================================== -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">01 · About Me</span>
+          <h2 class="section-title">Driven by <span class="gradient-text">Curiosity</span> & Rigorous Engineering</h2>
+          <p class="section-subtitle">
+            A look into my background, academic journey, and passion for creating intelligent systems.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Narrative Card -->
+          <div class="about-text-card">
+            <p>
+              I am a <strong>Computer Science & Engineering undergraduate</strong> at the School of CS & AI, <strong>SR University</strong> (Class of 2023–2027). With a strong academic track record of <strong>9.4 CGPA</strong>, I focus on solving complex computational challenges through scalable software engineering and modern Artificial Intelligence.
+            </p>
+            <p>
+              My primary technical focus lies in <strong>Large Language Models (LLMs)</strong>, agentic evaluation benchmarks (such as <strong>MIRAI</strong>), adaptive education platforms (<strong>EduGPT</strong>), and systems design. I believe in writing clean, reliable code backed by mathematical intuition and sound architectural principles.
+            </p>
+            <p>
+              Beyond technical coursework, I am honored to serve as a student member of the <strong>Internal Quality Assurance Cell (IQAC)</strong> at SR University, where I actively contribute to academic enhancement initiatives, quality benchmarking, and institutional excellence.
+            </p>
+
+            <div class="about-features">
+              <div class="feature-box">
+                <div class="feature-icon">🧠</div>
+                <div class="feature-title">AI & LLM Reasoning</div>
+                <div class="feature-desc">Benchmarking agentic reasoning, prompt workflows, and probabilistic predictive systems.</div>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">⚙️</div>
+                <div class="feature-title">Core Computer Science</div>
+                <div class="feature-desc">Solid grounding in Algorithms, Data Structures, OOP (Java/Python), and Computer Networks.</div>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">🎮</div>
+                <div class="feature-title">Systems & Game Dev</div>
+                <div class="feature-desc">Experienced in game architecture, 2D physics simulation, and state machines with Unity 6 & C#.</div>
+              </div>
+              <div class="feature-box">
+                <div class="feature-icon">🏛️</div>
+                <div class="feature-title">Institutional Leadership</div>
+                <div class="feature-desc">Selected student representative for the university-wide IQAC quality committee.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Info Cards -->
+          <div class="quick-info-stack">
+            <div class="info-card">
+              <div class="info-icon-badge">🎓</div>
+              <div class="info-content">
+                <div class="info-label">Degree & Major</div>
+                <div class="info-val">B.Tech Computer Science & Engineering</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon-badge">🏛️</div>
+              <div class="info-content">
+                <div class="info-label">University</div>
+                <div class="info-val">SR University, Warangal, Telangana</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon-badge">📍</div>
+              <div class="info-content">
+                <div class="info-label">Location</div>
+                <div class="info-val">Telangana, India</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon-badge">✉️</div>
+              <div class="info-content">
+                <div class="info-label">Direct Email</div>
+                <div class="info-val">bonaganisaitejaswi22@gmail.com</div>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon-badge">💼</div>
+              <div class="info-content">
+                <div class="info-label">Opportunities</div>
+                <div class="info-val">Software Engineer & AI/ML Internships</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">AI / ML</div>
-        <div class="skill-tags">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">NLP</span>
-          <span class="tag">LLM APIs</span>
-          <span class="tag">Prompt Eng.</span>
+    </section>
+
+    <!-- ====================================================================
+         EDUCATION SECTION
+         ==================================================================== -->
+    <section id="education">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">02 · Education</span>
+          <h2 class="section-title">Academic <span class="gradient-text">Journey</span></h2>
+          <p class="section-subtitle">
+            A consistent record of high academic performance and continuous learning.
+          </p>
+        </div>
+
+        <div class="education-timeline">
+          <!-- Item 1: SR University -->
+          <div class="timeline-card">
+            <div class="timeline-node"></div>
+            <div class="timeline-content-box">
+              <div class="timeline-header">
+                <div class="timeline-institution">SR University</div>
+                <span class="timeline-year-pill">2023 – 2027 · Present</span>
+              </div>
+              <div class="timeline-degree">Bachelor of Technology (B.Tech) — Computer Science & Engineering</div>
+              <div class="timeline-meta-row">
+                <span class="timeline-score-badge">⭐ CGPA: 9.4 / 10.0</span>
+                <span class="badge badge-pulse">School of CS & AI</span>
+              </div>
+              <p class="timeline-details">
+                Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming (Java/Python), Database Management Systems (SQL), Operating Systems, Computer Networks, Machine Learning, Artificial Intelligence, and Game Design. Appointed student member of the Internal Quality Assurance Cell (IQAC).
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 2: Suvidyaa Junior College -->
+          <div class="timeline-card">
+            <div class="timeline-node"></div>
+            <div class="timeline-content-box">
+              <div class="timeline-header">
+                <div class="timeline-institution">Suvidyaa Junior College</div>
+                <span class="timeline-year-pill">2021 – 2023</span>
+              </div>
+              <div class="timeline-degree">Higher Secondary Certificate (Intermediate — MPC)</div>
+              <div class="timeline-meta-row">
+                <span class="timeline-score-badge">⭐ Percentage: 97.2%</span>
+                <span class="badge" style="background: rgba(56, 189, 248, 0.1); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3);">Telangana State Board</span>
+              </div>
+              <p class="timeline-details">
+                Focused intensively on advanced Mathematics, Physics, and Chemistry. Graduated in the top percentile of the state board examination with outstanding academic honors.
+              </p>
+            </div>
+          </div>
+
+          <!-- Item 3: SPR School of Excellence -->
+          <div class="timeline-card">
+            <div class="timeline-node"></div>
+            <div class="timeline-content-box">
+              <div class="timeline-header">
+                <div class="timeline-institution">SPR School of Excellence</div>
+                <span class="timeline-year-pill">Completed 2021</span>
+              </div>
+              <div class="timeline-degree">Secondary School Certificate (SSC)</div>
+              <div class="timeline-meta-row">
+                <span class="timeline-score-badge">⭐ GPA: 10.0 / 10.0 (Perfect Score)</span>
+                <span class="badge" style="background: rgba(168, 85, 247, 0.1); color: var(--accent-primary); border: 1px solid rgba(168, 85, 247, 0.3);">Distinction</span>
+              </div>
+              <p class="timeline-details">
+                Completed secondary schooling with a perfect 10/10 GPA. Recognized for academic distinction in Mathematics, Science, and leadership in school science exhibitions.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="skill-card">
-        <div class="skill-card-title">Web & Tools</div>
-        <div class="skill-tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">Git</span>
-          <span class="tag">GitHub</span>
+    </section>
+
+    <!-- ====================================================================
+         SKILLS SECTION
+         ==================================================================== -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">03 · Skills & Tools</span>
+          <h2 class="section-title">Technical <span class="gradient-text">Proficiencies</span></h2>
+          <p class="section-subtitle">
+            A comprehensive overview of programming languages, frameworks, AI stacks, and developer tools.
+          </p>
+        </div>
+
+        <div class="skills-category-grid">
+          <!-- 1. Languages -->
+          <div class="skill-group-card">
+            <div class="group-header">
+              <div class="group-icon">💻</div>
+              <h3 class="group-title">Programming Languages</h3>
+            </div>
+            <div class="skill-pills-wrap">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">C</span>
+              <span class="skill-pill">C++</span>
+              <span class="skill-pill">C# (Unity)</span>
+              <span class="skill-pill">JavaScript (ES6+)</span>
+              <span class="skill-pill">SQL</span>
+            </div>
+          </div>
+
+          <!-- 2. AI & ML -->
+          <div class="skill-group-card">
+            <div class="group-header">
+              <div class="group-icon">🤖</div>
+              <h3 class="group-title">AI & Machine Learning</h3>
+            </div>
+            <div class="skill-pills-wrap">
+              <span class="skill-pill">Large Language Models (LLMs)</span>
+              <span class="skill-pill">Prompt Engineering</span>
+              <span class="skill-pill">Natural Language Processing (NLP)</span>
+              <span class="skill-pill">Agentic Benchmarking</span>
+              <span class="skill-pill">OpenAI / Gemini APIs</span>
+              <span class="skill-pill">Scikit-Learn</span>
+              <span class="skill-pill">Model Evaluation</span>
+            </div>
+          </div>
+
+          <!-- 3. Web & Systems -->
+          <div class="skill-group-card">
+            <div class="group-header">
+              <div class="group-icon">🌐</div>
+              <h3 class="group-title">Web & Interface Design</h3>
+            </div>
+            <div class="skill-pills-wrap">
+              <span class="skill-pill">HTML5</span>
+              <span class="skill-pill">CSS3 & Modern Layouts</span>
+              <span class="skill-pill">Responsive Design</span>
+              <span class="skill-pill">Glassmorphism UI</span>
+              <span class="skill-pill">RESTful APIs</span>
+              <span class="skill-pill">Streamlit</span>
+              <span class="skill-pill">DOM & Web APIs</span>
+            </div>
+          </div>
+
+          <!-- 4. Databases & Cloud -->
+          <div class="skill-group-card">
+            <div class="group-header">
+              <div class="group-icon">🗄️</div>
+              <h3 class="group-title">Databases & Cloud</h3>
+            </div>
+            <div class="skill-pills-wrap">
+              <span class="skill-pill">MySQL</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">SQLite</span>
+              <span class="skill-pill">AWS Cloud Foundations</span>
+              <span class="skill-pill">Amazon S3</span>
+              <span class="skill-pill">Amazon EC2</span>
+              <span class="skill-pill">Cloud Security</span>
+            </div>
+          </div>
+
+          <!-- 5. Developer Tools -->
+          <div class="skill-group-card">
+            <div class="group-header">
+              <div class="group-icon">🛠️</div>
+              <h3 class="group-title">Developer Tools & Networking</h3>
+            </div>
+            <div class="skill-pills-wrap">
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">GitHub</span>
+              <span class="skill-pill">Visual Studio Code</span>
+              <span class="skill-pill">Unity 6 Engine</span>
+              <span class="skill-pill">Linux / Bash CLI</span>
+              <span class="skill-pill">Cisco Packet Tracer</span>
+              <span class="skill-pill">Postman</span>
+              <span class="skill-pill">Object-Oriented Design</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PROJECTS SECTION
+         ==================================================================== -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">04 · Portfolio Projects</span>
+          <h2 class="section-title">Selected <span class="gradient-text">Engineering Works</span></h2>
+          <p class="section-subtitle">
+            Explore featured software engineering, AI reasoning benchmarks, and platform implementations.
+          </p>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="projects-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ai">AI & LLMs</button>
+          <button class="filter-btn" data-filter="games">Game & Systems</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-showcase-grid">
+          <!-- Project 1: MIRAI -->
+          <article class="project-card" data-category="ai">
+            <div class="project-preview-mockup">
+              <span class="preview-badge-category">LLM Research · Benchmark</span>
+              <div class="mockup-inner-banner">
+                <div class="project-brand-icon">🔮</div>
+                <div class="mockup-subtext">MIRAI AGENT BENCHMARK</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-num-indicator">// PROJECT 01</div>
+              <h3 class="project-title">MIRAI — LLM Forecasting Benchmark</h3>
+              <p class="project-description">
+                A specialized benchmarking framework designed for evaluating autonomous LLM agents in forecasting and predicting real-world events. Evaluates multi-step agent reasoning, probabilistic calibration, and decision-making under uncertainty.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">LLM APIs</span>
+                <span class="tech-tag">Prompt Engineering</span>
+                <span class="tech-tag">Agent Evaluation</span>
+                <span class="tech-tag">Forecasting Metrics</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/2303A51184" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: EduGPT -->
+          <article class="project-card" data-category="ai">
+            <div class="project-preview-mockup">
+              <span class="preview-badge-category">AI EdTech · NLP</span>
+              <div class="mockup-inner-banner">
+                <div class="project-brand-icon">📚</div>
+                <div class="mockup-subtext">ADAPTIVE LEARNING ASSISTANT</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-num-indicator">// PROJECT 02</div>
+              <h3 class="project-title">EduGPT — Personalized Learning Assistant</h3>
+              <p class="project-description">
+                An intelligent educational platform that adapts learning curricula to student comprehension levels using LLMs. Features dynamic quiz generation, complex concept breakdown, step-by-step tutoring, and learning progress analytics.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">Streamlit UI</span>
+                <span class="tech-tag">LLM API</span>
+                <span class="tech-tag">Educational Analytics</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/2303A51184" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  Source Code
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Super Mario 2D -->
+          <article class="project-card" data-category="games">
+            <div class="project-preview-mockup">
+              <span class="preview-badge-category">Game Engineering · Unity 6</span>
+              <div class="mockup-inner-banner">
+                <div class="project-brand-icon">🍄</div>
+                <div class="mockup-subtext">20-LEVEL 2D PLATFORMER</div>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-num-indicator">// PROJECT 03</div>
+              <h3 class="project-title">Super Mario 2D Platformer</h3>
+              <p class="project-description">
+                A complete 20-level platformer built in Unity 6 and C#. Features 4 world boss encounters, custom Rigidbody2D jump physics, checkpoint respawning, 3-life system, power-up states (Super & Fire Mario), and 8-bit procedural sound generation.
+              </p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Unity 6</span>
+                <span class="tech-tag">C#</span>
+                <span class="tech-tag">2D Physics</span>
+                <span class="tech-tag">Enemy AI</span>
+                <span class="tech-tag">Level Design</span>
+                <span class="tech-tag">State Machines</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/2303A51184/Super-mario-game-2d" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  Repository
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACHIEVEMENTS & CERTIFICATIONS SECTION
+         ==================================================================== -->
+    <section id="achievements">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">05 · Recognition & Credentials</span>
+          <h2 class="section-title">Leadership & <span class="gradient-text">Certifications</span></h2>
+          <p class="section-subtitle">
+            Institutional appointments, academic achievements, and industry-certified technical competencies.
+          </p>
+        </div>
+
+        <div class="credentials-grid">
+          <!-- Achievements Column -->
+          <div>
+            <h3 class="credentials-col-title">
+              <span>🏛️</span> Institutional Leadership & Honors
+            </h3>
+            <div class="credential-cards-stack">
+              <!-- Achievement 1 -->
+              <div class="credential-item-card">
+                <div class="credential-icon-box">🏛️</div>
+                <div class="credential-meta">
+                  <h4 class="credential-title">IQAC Student Member</h4>
+                  <div class="credential-issuer">Internal Quality Assurance Cell · SR University (2025–2026)</div>
+                  <p class="credential-desc">
+                    Appointed as a representative to participate in strategic institutional evaluations, academic feedback systems, curriculum quality enhancement, and accreditation compliance.
+                  </p>
+                  <span class="credential-pill-tag">✓ University Appointed</span>
+                </div>
+              </div>
+
+              <!-- Achievement 2 -->
+              <div class="credential-item-card">
+                <div class="credential-icon-box">⭐</div>
+                <div class="credential-meta">
+                  <h4 class="credential-title">Academic Merit & Distinction</h4>
+                  <div class="credential-issuer">Top Academic Percentile · 2021 – Present</div>
+                  <p class="credential-desc">
+                    Consistently ranked in the top percentile of Computer Science students with 9.4 CGPA at SR University, following 97.2% in Intermediate and a 10.0/10 GPA in secondary schooling.
+                  </p>
+                  <span class="credential-pill-tag">✓ Academic Excellence</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications Column -->
+          <div id="certificates">
+            <h3 class="credentials-col-title">
+              <span>📜</span> Verified Certifications
+            </h3>
+            <div class="credential-cards-stack">
+              <!-- Cert 1: AWS -->
+              <div class="credential-item-card">
+                <div class="credential-icon-box">☁️</div>
+                <div class="credential-meta">
+                  <h4 class="credential-title">AWS Cloud Foundations</h4>
+                  <div class="credential-issuer">Amazon Web Services (AWS Academy)</div>
+                  <p class="credential-desc">
+                    Comprehensive training in cloud concepts, core AWS architectural components (EC2, S3, IAM, VPC), security best practices, and cloud economics.
+                  </p>
+                  <span class="credential-pill-tag">✓ Certified Competency</span>
+                </div>
+              </div>
+
+              <!-- Cert 2: CCNA -->
+              <div class="credential-item-card">
+                <div class="credential-icon-box">🌐</div>
+                <div class="credential-meta">
+                  <h4 class="credential-title">CCNA: Introduction to Networks</h4>
+                  <div class="credential-issuer">Cisco Networking Academy</div>
+                  <p class="credential-desc">
+                    In-depth understanding of network architectures, IPv4/IPv6 addressing schemes, Ethernet operations, routing protocols, and enterprise network design.
+                  </p>
+                  <span class="credential-pill-tag">✓ Cisco Certified</span>
+                </div>
+              </div>
+
+              <!-- Cert 3: EduSkills -->
+              <div class="credential-item-card">
+                <div class="credential-icon-box">💼</div>
+                <div class="credential-meta">
+                  <h4 class="credential-title">EduSkills Virtual Internships</h4>
+                  <div class="credential-issuer">Industry-Aligned Virtual Internship Program</div>
+                  <p class="credential-desc">
+                    Practical industry internship curriculum covering real-world software engineering workflows, cloud infrastructure, and modern development standards.
+                  </p>
+                  <span class="credential-pill-tag">✓ Industry Training</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CONTACT SECTION
+         ==================================================================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">06 · Get in Touch</span>
+          <h2 class="section-title">Let's <span class="gradient-text">Connect</span> & Build</h2>
+          <p class="section-subtitle">
+            Whether you have an internship opportunity, an interesting project, or simply want to connect, feel free to reach out.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Left Contact Info -->
+          <div class="contact-info-panel">
+            <div class="contact-card-box">
+              <!-- Method 1: Email -->
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <polyline points="22,6 12,13 2,6" fill="none" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <div class="contact-type">Email</div>
+                  <a href="mailto:bonaganisaitejaswi22@gmail.com" class="contact-value">bonaganisaitejaswi22@gmail.com</a>
+                  <div>
+                    <button class="copy-btn" id="copy-email-btn" title="Copy email address">📋 Copy Email</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Method 2: LinkedIn -->
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <div class="contact-type">LinkedIn</div>
+                  <a href="https://www.linkedin.com/in/bonagani-sai-tejaswi-770430300" target="_blank" rel="noopener noreferrer" class="contact-value">bonagani-sai-tejaswi-770430300</a>
+                </div>
+              </div>
+
+              <!-- Method 3: GitHub -->
+              <div class="contact-method">
+                <div class="contact-icon">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                </div>
+                <div class="contact-details">
+                  <div class="contact-type">GitHub</div>
+                  <a href="https://github.com/2303A51184" target="_blank" rel="noopener noreferrer" class="contact-value">github.com/2303A51184</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Contact Form -->
+          <div class="contact-form-card">
+            <form id="portfolio-contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name *</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="e.g. Alex Morgan" required />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email Address *</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" class="form-input" placeholder="Internship Opportunity / Inquiry" />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Your Message *</label>
+                <textarea id="contact-message" class="form-textarea" placeholder="Hello Sai Tejaswi, I would love to talk about..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <span>Send Message</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+
+              <div id="form-feedback" class="form-feedback" role="alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       SITE FOOTER
+       ==================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          Sai Tejaswi Bonagani
+        </div>
+        <div class="footer-nav">
+          <a href="#home" class="footer-link">Home</a>
+          <a href="#about" class="footer-link">About</a>
+          <a href="#education" class="footer-link">Education</a>
+          <a href="#skills" class="footer-link">Skills</a>
+          <a href="#projects" class="footer-link">Projects</a>
+          <a href="#achievements" class="footer-link">Achievements</a>
+          <a href="#certificates" class="footer-link">Certificates</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2025–2026 Sai Tejaswi Bonagani. All rights reserved.
+        </div>
+        <div>
+          Designed & Built with HTML5, CSS3, & Modern Vanilla JS
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="sec-label">03 — Projects</div>
-    <h2 class="sec-title">Selected<br/>Work</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="project-num">01</div>
-        <div class="project-name">MIRAI</div>
-        <div class="project-desc">LLM Agent Benchmark designed for forecasting and predicting real-world events. Evaluates language model reasoning under uncertainty.</div>
-        <span class="project-tag">LLM · Agent · Forecasting</span>
+  <!-- Floating Back-to-Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- ====================================================================
+       INTERACTIVE RESUME MODAL
+       ==================================================================== -->
+  <div class="resume-modal" id="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-title">
+    <div class="resume-modal-dialog">
+      <div class="resume-modal-header">
+        <h3 class="resume-modal-title" id="resume-title">Curriculum Vitae — Sai Tejaswi Bonagani</h3>
+        <button class="btn-icon" id="close-resume-btn" aria-label="Close modal">✕</button>
       </div>
-      <div class="project-card">
-        <div class="project-num">02</div>
-        <div class="project-name">EduGPT</div>
-        <div class="project-desc">AI-powered personalized learning system that adapts educational content to individual student needs using large language models.</div>
-        <span class="project-tag">AI · Education · NLP</span>
+
+      <div class="resume-modal-body">
+        <div class="resume-print-header">
+          <h1>SAI TEJASWI BONAGANI</h1>
+          <p>
+            Warangal, Telangana, India | +91 •••••••••• | bonaganisaitejaswi22@gmail.com<br />
+            LinkedIn: linkedin.com/in/bonagani-sai-tejaswi-770430300 | GitHub: github.com/2303A51184
+          </p>
+        </div>
+
+        <div class="resume-section-title">EDUCATION</div>
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>SR University, Warangal, Telangana</span>
+            <span>2023 – 2027</span>
+          </div>
+          <div class="resume-item-sub">B.Tech in Computer Science & Engineering (School of CS & AI) — CGPA: 9.4 / 10.0</div>
+          <p style="font-size: 13px; color: #475569;">
+            Honors: Appointed Student Member of the Internal Quality Assurance Cell (IQAC). Coursework: Data Structures, Algorithms, OOP, DBMS, Operating Systems, Machine Learning, Computer Networks, Game Design.
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>Suvidyaa Junior College</span>
+            <span>2021 – 2023</span>
+          </div>
+          <div class="resume-item-sub">Intermediate (MPC) — Board of Intermediate Education, Telangana — Score: 97.2%</div>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>SPR School of Excellence</span>
+            <span>2021</span>
+          </div>
+          <div class="resume-item-sub">Secondary School Certificate (SSC) — GPA: 10.0 / 10.0 (Perfect Grade)</div>
+        </div>
+
+        <div class="resume-section-title">TECHNICAL SKILLS</div>
+        <p style="font-size: 13px; color: #334155; line-height: 1.7;">
+          <strong>Programming:</strong> Python, Java, C, C++, C# (Unity), JavaScript (ES6+), SQL<br />
+          <strong>AI & Machine Learning:</strong> Large Language Models (LLM APIs), NLP, Agent Benchmarks, Prompt Engineering, Scikit-Learn<br />
+          <strong>Web & Systems:</strong> HTML5, CSS3, Modern Responsive Layouts, RESTful APIs, Streamlit, Git, GitHub, VS Code, Linux CLI, Postman<br />
+          <strong>Cloud & Databases:</strong> AWS Cloud Foundations (EC2, S3, IAM), MySQL, PostgreSQL, SQLite, CCNA Networking Fundamentals
+        </p>
+
+        <div class="resume-section-title">KEY PROJECTS</div>
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>MIRAI — LLM Agent Benchmark for Forecasting</span>
+            <span>Python, LLM APIs, Agent Architecture</span>
+          </div>
+          <p style="font-size: 13px; color: #475569;">
+            Designed a comprehensive benchmarking suite to evaluate LLM reasoning under uncertainty when predicting real-world events. Implemented probabilistic evaluation metrics and automated multi-agent reasoning workflows.
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>EduGPT — AI-Powered Personalized Learning System</span>
+            <span>Python, NLP, Streamlit, LLM</span>
+          </div>
+          <p style="font-size: 13px; color: #475569;">
+            Developed an adaptive learning assistant that tailors complex educational topics into student-specific modules, generating real-time quizzes and analytics.
+          </p>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-item-top">
+            <span>Super Mario 2D — 20-Level Platformer Game</span>
+            <span>Unity 6, C#, 2D Physics</span>
+          </div>
+          <p style="font-size: 13px; color: #475569;">
+            Engineered a complete 20-level platformer with 4 world boss encounters, custom Rigidbody2D jumping physics, checkpoint respawning, life systems, and 8-bit procedural audio synthesis.
+          </p>
+        </div>
+
+        <div class="resume-section-title">CERTIFICATIONS & LEADERSHIP</div>
+        <ul style="font-size: 13px; color: #475569; padding-left: 20px; line-height: 1.7;">
+          <li><strong>AWS Cloud Foundations</strong> — Amazon Web Services (AWS Academy)</li>
+          <li><strong>CCNA: Introduction to Networks</strong> — Cisco Networking Academy</li>
+          <li><strong>EduSkills Virtual Internships</strong> — Industry-aligned AI & Software Engineering Program</li>
+          <li><strong>IQAC Student Member</strong> — Internal Quality Assurance Cell, SR University (2025–2026)</li>
+        </ul>
+      </div>
+
+      <div class="resume-modal-footer">
+        <button class="btn btn-secondary btn-sm" id="print-resume-btn">🖨️ Print / Save as PDF</button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <div class="sec-label">04 — Achievements</div>
-    <h2 class="sec-title">Recognition<br/>& Roles</h2>
-    <div class="list-items">
-      <div class="list-item">
-        <div class="list-icon">🏛️</div>
-        <div class="list-text">
-          <div class="list-title">IQAC Member</div>
-          <div class="list-sub">Internal Quality Assurance Cell · SR University · 2025–2026</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATES -->
-  <section id="certificates">
-    <div class="sec-label">05 — Certificates</div>
-    <h2 class="sec-title">Credentials<br/>& Training</h2>
-    <div class="list-items">
-      <div class="list-item">
-        <div class="list-icon">☁️</div>
-        <div class="list-text">
-          <div class="list-title">AWS Cloud Foundations</div>
-          <div class="list-sub">Amazon Web Services · Cloud Computing Fundamentals</div>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="list-icon">🌐</div>
-        <div class="list-text">
-          <div class="list-title">CCNA — Introduction to Networks</div>
-          <div class="list-sub">Cisco Certified Network Associate · Networking Fundamentals</div>
-        </div>
-      </div>
-      <div class="list-item">
-        <div class="list-icon">💼</div>
-        <div class="list-text">
-          <div class="list-title">EduSkills Virtual Internships</div>
-          <div class="list-sub">Industry-aligned virtual training program</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <span>© 2025 Sai Tejaswi Bonagani</span>
-  <span>bonaganisaitejaswi22@gmail.com</span>
-</footer>
-
+  <!-- Custom JavaScript -->
+  <script src="js/main.js"></script>
 </body>
 </html>
